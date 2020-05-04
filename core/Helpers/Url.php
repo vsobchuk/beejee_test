@@ -13,6 +13,6 @@ class Url
         $params['a'] = $action;
 
         $url = http_build_query($params);
-        return $url;
+        return "http://" . $_SERVER[HTTP_HOST] . '?' . $url;
     }
 }
