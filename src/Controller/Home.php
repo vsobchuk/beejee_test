@@ -50,10 +50,10 @@ class Home extends BaseController
         $task = Task::loadById((int)$_GET['id']);
         if (!empty($_POST)) {
             $task->processSaving($_POST);
-//            if (empty($task->getErrorMessage())) {
-//                header('Location: ' . \Core\Helpers\Url::generate('home', 'index'));
-//                return true;
-//            }
+            if (empty($task->getErrorMessage())) {
+                header('Location: ' . \Core\Helpers\Url::generate('home', 'index'));
+                return true;
+            }
         }
 
         $this->render('home/create.php', [

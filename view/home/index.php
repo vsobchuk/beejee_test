@@ -16,8 +16,8 @@
     </h2>
 
     <div class="row task-list">
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-1"></div>
+        <div class="col-10">
             <table id="table_tasks" class="display">
                 <thead>
                 <tr>
@@ -50,7 +50,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-3"></div>
+        <div class="col-1"></div>
     </div>
 
 </section>

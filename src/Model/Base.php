@@ -107,8 +107,9 @@ abstract class Base
 
         $sql = 'UPDATE ' . static::getTableName() . ' SET ';
         foreach ($attributes as $attribute) {
-            $sql .= $attribute . '= :' . $attribute . ', ';
+            $sql .= $attribute . '=:' . $attribute . ', ';
         }
+        $sql = trim($sql, ', ');
         $sql .= ' WHERE id=' . (int)$id;
 
         $pdo = \Core\DB\MySQL::getInstance()->getPdo();

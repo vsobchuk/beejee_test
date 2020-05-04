@@ -12,7 +12,7 @@ class Task extends Base
     protected $user_name;
     protected $email;
     protected $instructions;
-    protected $is_completed;
+    protected $is_completed = 0;
 
     static public function getTableName(): string
     {
