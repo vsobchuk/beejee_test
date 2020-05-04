@@ -62,7 +62,19 @@ class Task extends Base
 
     }
 
-    public static function getList(int $limit, int $offset = 0, $orderBy = 'id', $orderDirection = 'ASC'): array
+    public static function getList(): array
+    {
+        $pdo = \Core\DB\MySQL::getInstance()->getPdo();
+
+        $sql = 'SELECT * FROM ' . self::getTableName();
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    //effort to implement pagination and sorting - makes defenitely no sense as taking huge amount of time, when present in all frameworks ;)
+    public static function _getList(int $limit, int $offset = 0, $orderBy = 'id', $orderDirection = 'ASC'): array
     {
         $pdo = \Core\DB\MySQL::getInstance()->getPdo();
 

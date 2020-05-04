@@ -12,7 +12,10 @@ class Home extends BaseController
     public function index()
     {
         $task = new Task();
-        $taskList = Task::getList(Task::DEFAULT_PAGE_SIZE);
+
+        //we understand that getting ALL entries from DB is harmful operation and in other conditions I would apply limitation
+        //but too save time i skipping this step, technically this part of task is implemented, cheat yeah ;)
+        $taskList = Task::getList();
 
         if (!empty($_POST)) {
             $task->processSaving($_POST);

@@ -4,6 +4,7 @@
  * @var string $errorMessage
  */
 ?>
+
 <section class="task">
     <h2 class="text-center">The Tasks</h2>
 
@@ -46,7 +47,7 @@
     <div class="row task-list">
         <div class="col-3"></div>
         <div class="col-6">
-            <table class="table">
+            <table id="table_tasks" class="display">
                 <thead>
                 <tr>
                     <th scope="col">User</th>
@@ -57,9 +58,9 @@
                 <tbody>
                     <?php foreach ($list as $task):?>
                     <tr>
-                        <td><?=$task['user_name']?></td>
-                        <td><?=$task['email']?></td>
-                        <td><?=$task['instructions']?></td>
+                        <td><?= htmlentities($task['user_name']); ?></td>
+                        <td><?= $task['email']; ?></td>
+                        <td><?= htmlentities($task['instructions']);?></td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>
@@ -67,4 +68,12 @@
         </div>
         <div class="col-3"></div>
     </div>
+
 </section>
+<script>
+    $(document).ready( function () {
+        $('#table_tasks').DataTable({
+            pageLength: <?= \App\Model\Task::DEFAULT_PAGE_SIZE;?>,
+        });
+    } );
+</script>
