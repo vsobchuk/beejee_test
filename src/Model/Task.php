@@ -57,9 +57,13 @@ class Task extends Base
         return $this;
     }
 
-    public function updateModel()
+    public static function loadById(int $id)
     {
-
+        $sql = 'SELECT * FROM ' . self::getTableName() . ' WHERE id=' . $id;
+        $pdo = \Core\DB\MySQL::getInstance()->getPdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        return $statement->fetchObject(Task::class);
     }
 
     public static function getList(): array

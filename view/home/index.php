@@ -2,14 +2,17 @@
 /**
  * @var \App\Model\Task $task
  * @var string $errorMessage
+ * @var bool $isEditEnabled
  */
 ?>
 
 <section class="task">
     <h2 class="text-center">
         <a href="<?= \Core\Helpers\Url::generate('home', 'create'); ?>">Create new entry</a>
+        <?php if (!\Core\RequestHandler::getUserId()):?>
         or
-        <a href="#">Login</a>
+        <a href="<?= \Core\Helpers\Url::generate('home', 'login'); ?>">Login</a>
+        <?php endif;?>
     </h2>
 
     <div class="row task-list">
@@ -32,7 +35,16 @@
                         <td><?= htmlentities($task['user_name']); ?></td>
                         <td><?= $task['email']; ?></td>
                         <td><?= htmlentities($task['instructions']);?></td>
-                        <td><?= $task['is_completed'] ? "Yes" : "No";?></td>
+                        <td>
+                            <?php
+                                $cellContent = $task['is_completed'] ? "Yes" : "No";
+                                if ($isEditEnabled) {
+                                    $url = \Core\Helpers\Url::generate('home', 'update', ['id' => $task['id']]);
+                                    $cellContent = "<a href='$url'> $cellContent </a>";
+                                }
+                                echo $cellContent;
+                            ?>
+                        </td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>

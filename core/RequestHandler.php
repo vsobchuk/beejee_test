@@ -6,6 +6,8 @@ namespace Core;
 
 class RequestHandler
 {
+    const SESSION_KEY_USER_ID = 'user_id';
+
     protected static $instance;
 
     protected $defaultControllerNamespace = '\\App\\Controller\\';
@@ -33,9 +35,16 @@ class RequestHandler
 
     public function run()
     {
+        session_start();
+
         $controller = $this->getRequestedControllerName();
         $action = $this->getRequestedControllerAction();
         $controller = new $controller;
         $controller->$action();
+    }
+
+    public function getUserId()
+    {
+        return $_SESSION[self::SESSION_KEY_USER_ID] ?? false;
     }
 }

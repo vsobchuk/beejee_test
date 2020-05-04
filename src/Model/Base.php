@@ -89,6 +89,7 @@ abstract class Base
             . ' (' . implode(',', $attributes) . ')'
             . ' VALUES (:' . implode(',:', $attributes) . ')';
 
+
         $pdo = \Core\DB\MySQL::getInstance()->getPdo();
         $statement = $pdo->prepare($sql);
         foreach ($attributes as $attribute) {
@@ -99,6 +100,22 @@ abstract class Base
 
     public function updateModel()
     {
+        $attributes = $this->getAttributesLabels();
+        $id = $this->id;
+        unset($attributes['id']);
+        $attributes = array_keys($attributes);
 
+        $sql = 'UPDATE ' . static::getTableName() . ' SET ';
+        foreach ($attributes as $attribute) {
+            $sql .= $attribute . '= :' . $attribute . ', ';
+        }
+        $sql .= ' WHERE id=' . (int)$id;
+
+        $pdo = \Core\DB\MySQL::getInstance()->getPdo();
+        $statement = $pdo->prepare($sql);
+        foreach ($attributes as $attribute) {
+            $statement->bindParam(':' . $attribute, $this->$attribute);
+        }
+        $statement->execute();
     }
 }

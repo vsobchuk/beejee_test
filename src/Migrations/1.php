@@ -18,7 +18,8 @@ CREATE TABLE user (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `login` varchar (64) NOT NULL,
   `pass` varchar (64) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `login` (`login`)
 );
 
 INSERT INTO user (login, pass) VALUES ("admin", "202cb962ac59075b964b07152d234b70");
