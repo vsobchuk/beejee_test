@@ -13,6 +13,15 @@ CREATE TABLE task (
   `is_completed` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE user (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `login` varchar (64) NOT NULL,
+  `pass` varchar (64) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO user (login, pass) VALUES ("admin", "202cb962ac59075b964b07152d234b70");
 EOT;
 
 var_dump($pdo->exec($sql));
