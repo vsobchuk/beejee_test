@@ -1,0 +1,16 @@
+{
+    "name": "vsobchuk/pre_test",
+    "authors": [
+        {
+            "name": "vsobchuk",
+            "email": "vmsobchuk@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
