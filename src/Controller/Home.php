@@ -47,6 +47,10 @@ class Home extends BaseController
 
     public function update()
     {
+        if (!\Core\RequestHandler::getUserId()) {
+            throw new \Exception('Only authenticated users can update');
+        }
+
         $task = Task::loadById((int)$_GET['id']);
         if (!empty($_POST)) {
             $task->processSaving($_POST);
