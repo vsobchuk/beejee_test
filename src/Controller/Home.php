@@ -86,7 +86,7 @@ class Home extends BaseController
 
     public function logout()
     {
-        header('Location: ' . \Core\Helpers\Url::generate('home', 'index'));
         $_SESSION[RequestHandler::SESSION_KEY_USER_ID] = null;
+        header('Location: ' . \Core\Helpers\Url::generate('home', 'index'));
     }
 }
