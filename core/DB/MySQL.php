@@ -6,10 +6,8 @@ namespace Core\DB;
 
 class MySQL
 {
-//    protected $dsn = 'mysql:host=127.0.0.1:3306;dbname=test_task';
     protected $dsn = 'mysql:host=127.0.0.1:3306;dbname=vsobchuk';
     protected $user = 'vsobchuk';
-//    protected $pass = '123456';
     protected $pass = 'vsobchuk';
 
     protected $pdo;

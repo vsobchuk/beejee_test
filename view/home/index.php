@@ -3,6 +3,7 @@
  * @var \App\Model\Task $task
  * @var string $errorMessage
  * @var bool $isEditEnabled
+ * @var \App\Model\Task[] $list
  */
 ?>
 
@@ -31,15 +32,15 @@
                 <tbody>
                     <?php foreach ($list as $task):?>
                     <tr>
-                        <td><?= $task['id']; ?></td>
-                        <td><?= htmlentities($task['user_name']); ?></td>
-                        <td><?= $task['email']; ?></td>
-                        <td><?= htmlentities($task['instructions']);?></td>
+                        <td><?= $task->getAttributeValue('id'); ?></td>
+                        <td><?= htmlentities($task->getAttributeValue('user_name')); ?></td>
+                        <td><?= $task->getAttributeValue('email'); ?></td>
+                        <td><?= htmlentities($task->getAttributeValue('instructions'));?></td>
                         <td>
                             <?php
-                                $cellContent = $task['is_completed'] ? "Yes" : "No";
+                                $cellContent = $task->getAttributeValue('is_completed') ? "Yes" : "No";
                                 if ($isEditEnabled) {
-                                    $url = \Core\Helpers\Url::generate('home', 'update', ['id' => $task['id']]);
+                                    $url = \Core\Helpers\Url::generate('home', 'update', ['id' => $task->getAttributeValue('id')]);
                                     $cellContent = "<a href='$url'> $cellContent </a>";
                                 }
                                 echo $cellContent;
